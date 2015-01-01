@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 	"path"
+	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -48,12 +50,12 @@ func Static(asset func(string) ([]byte, error), options ...Options) gin.HandlerF
 		}
 
 		url := c.Request.URL.Path
-
-		b, err := asset(opt.Dir + url)
+		file := strings.TrimPrefix(opt.Dir+url, string(filepath.Separator))
+		b, err := asset(file)
 
 		if err != nil {
 			// Try to serve the index file.
-			b, err = asset(path.Join(opt.Dir+url, opt.IndexFile))
+			b, err = asset(path.Join(file, opt.IndexFile))
 
 			if err != nil {
 				// Go farther if the asset could not be found.
