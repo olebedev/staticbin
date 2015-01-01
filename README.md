@@ -1,4 +1,4 @@
-# StaticBin [![GoDoc](https://godoc.org/github.com/olebedev/staticbin?status.png)](https://godoc.org/github.com/olebedev/staticbin)
+# StaticBin [![wercker status](https://app.wercker.com/status/b026f59be5b3fb82aef510bfc46984f0/s "wercker status")](https://app.wercker.com/project/bykey/b026f59be5b3fb82aef510bfc46984f0) [![GoDoc](https://godoc.org/github.com/olebedev/staticbin?status.png)](https://godoc.org/github.com/olebedev/staticbin)
 
 [Gin](https://github.com/gin-gonic/gin) middleware/handler for serving static files from binary data.  
 Based on [staticbin](https://github.com/martini-contrib/staticbin) by [@yosssi](https://github.com/yosssi).  
