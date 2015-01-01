@@ -68,7 +68,6 @@ func Static(asset func(string) ([]byte, error), options ...Options) gin.HandlerF
 		}
 
 		http.ServeContent(c.Writer, c.Request, url, modtime, bytes.NewReader(b))
-		// TODO: fix me
-		c.Abort(-1)
+		c.Abort()
 	}
 }
