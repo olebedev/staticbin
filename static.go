@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"path"
-	"path/filepath"
 	"strings"
 	"time"
 
@@ -50,7 +49,13 @@ func Static(asset func(string) ([]byte, error), options ...Options) gin.HandlerF
 		}
 
 		url := c.Request.URL.Path
-		file := strings.TrimPrefix(opt.Dir+url, string(filepath.Separator))
+		if !strings.HasPrefix(url, opt.Dir) {
+			return
+		}
+		file := strings.TrimPrefix(
+			strings.TrimPrefix(url, opt.Dir),
+			"/",
+		)
 		b, err := asset(file)
 
 		if err != nil {
@@ -68,7 +73,6 @@ func Static(asset func(string) ([]byte, error), options ...Options) gin.HandlerF
 		}
 
 		http.ServeContent(c.Writer, c.Request, url, modtime, bytes.NewReader(b))
-		// TODO: fix me
-		c.Abort(-1)
+		c.Abort()
 	}
 }
