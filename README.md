@@ -29,3 +29,5 @@ func main() {
   r.Run(":8080")
 }
 ```
+
+> Note: master branch works with gin's master branch. Develop works with develop as well.
