@@ -20,7 +20,7 @@ func main() {
   // go-bindata (https://github.com/jteeuwen/go-bindata).
   r.Use(staticbin.Static(Asset, staticbin.Options{
     // Dir prefix will be trimmed. It needs to separate namespace.
-    Dir: "/static/",
+    Dir: "/static",
   }))
 
   r.Get("/", func() string {
@@ -30,5 +30,3 @@ func main() {
   r.Run(":8080")
 }
 ```
-
-> Note: master branch works with gin's master branch. Develop works with develop as well.
